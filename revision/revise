@@ -1,0 +1,9 @@
+Imports
+
+import tensorflow as tf
+import numpy as np
+from tensorflow import keras
+
+Checking version number of tensorflow
+
+print (tf.__version__)

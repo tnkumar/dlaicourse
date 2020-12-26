@@ -1,0 +1,29 @@
+Imports 
+*** 3 lines to import tensorflow, numpy and keras
+
+Check tf version
+*** 1 line
+
+Create neural network with one layer, one neuron and one input
+*** 1 line : model=
+
+Understand the different types of layers 
+*** Dense, 
+
+Specify model compilation with optimizer sgd and loss mean squared error
+*** 1 line
+
+Different types of optimizers
+*** Adam, SGD, RMSprop, ...
+
+Different types of losses
+*** mean_squared_error
+
+Providing input data as numpy array x -1,0,1,2,3,4 y -3,-1,1,3,5,7
+*** 2 lines - specify xs and ys and specify the data type
+
+Fit model with specified number of epochs
+*** 1 line
+
+Print prediction from the model
+*** 

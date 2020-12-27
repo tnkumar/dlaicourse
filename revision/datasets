@@ -1,0 +1,6 @@
+course 1, week 1, lab 1
+two float numpy arrays of 6 values
+
+course 1, week 2, lab 1
+mnist_fashion
+28 x 28 grayscale images, 60000 train, 10000 test, 69MB

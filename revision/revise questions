@@ -28,3 +28,11 @@ Fit model with specified number of epochs
 
 Print prediction from the model
 *** 
+
+***** Course 1 Week 2
+*** 1 line Import tf
+*** 5 + 1 line define class myCallback and instantiate object callbacks 
+*** 4 lines import and normalize fashion_mnist
+*** 5 lines model with 3 layers, 1 Flatten layer and intermediate layer with 512 neurons
+*** 1 line model compile with metrics = accuracy
+*** 1 line model fit with callbacks

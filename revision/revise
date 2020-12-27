@@ -1,9 +1,66 @@
-Imports
+*** Imports
 
 import tensorflow as tf
-import numpy as np
 from tensorflow import keras
 
-Checking version number of tensorflow
+import numpy as np
+np.set_printoptions(linewidth=200)
 
+import matplotlib.pyplot as plt
+
+*** Checking version number of tensorflow
 print (tf.__version__)
+
+*** Loading images from keras datasets
+fashion_mnist = tf.keras.datasets.fashion_mnist
+(training_images, training_labels), (test_images, test_labels) = fashion_mnist.load_data()
+
+*** Show image using matplotlib
+plt.imshow (training_images[2])
+
+*** Normalizing
+training_images = training_images / 255.0
+
+*** Specifying keras models
+model=tf.keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])                     # Course 1 Week 1 Lab 1
+
+model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),                                # Course 1 Week 2 - fashion_mnist - 28x28 grayscale
+                                    tf.keras.layers.Dense(128, activation=tf.nn.relu),        # was tested with 1024 neurons instead of 128
+                                    tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
+                                    
+*** Compiling a model
+
+model.compile(optimizer = tf.optimizers.Adam(),                                                # Course 1 Week 2
+              loss = 'sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+              
+*** Fitting a model
+model.fit(training_images, training_labels, epochs=5)
+model.fit(training_images, training_labels, epochs=5, callbacks=[callbacks])                   # When callbacks defined, add to model.fit
+
+*** Evaluate a model
+model.evaluate(test_images, test_labels)
+
+*** Use model to classify
+classifications = model.predict(test_images)
+print(classifications[0])
+
+*** Defining class myCallback and instantiating an object callbacks
+class myCallback(tf.keras.callbacks.Callback):
+  def on_epoch_end(self, epoch, logs={}):
+    if(logs.get('loss')<0.4):
+      print("\nReached 60% accuracy so cancelling training!")
+      self.model.stop_training = True
+
+callbacks = myCallback()
+
+*** Course 1 Week 2 variations fashion_mnist dataset                                         # Course 1 Week 2 variations 
+128 neurons in intermediate Dese layer               - loss started at 0.6 and became .28 in 5 epochs   accuraacy 0.78 to .89
+1024                                                                   0.3            .02    5                    0.90 to .99
+512 without normalization                                              7              .26    5                    0.86 to .94
+512 and 256 Adding extra layer - not much improvement                  0.31           .02    5                    0.90 to .99
+128 neurons                                                                                  30                   0.87 to .9987
+By removing flatten layer, the shape will not be correct and there will be an error
+If you have less neurons in the last layer than the number of classes, there will be an error
+Adding metrics in compile, prints out accuracy as well
+              

@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 *** Checking version number of tensorflow
 print (tf.__version__)
 
-*** Loading images from keras datasets
+*** Loading images from keras datasets                                                        # Course 1 Week 2 
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (training_images, training_labels), (test_images, test_labels) = fashion_mnist.load_data()
 

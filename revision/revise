@@ -1,3 +1,10 @@
+*** Various exercises
+Course 1 Week 1 - House price with number of bedrooms
+Course 1 Week 2 Lab 1- fashion_mnist - with various variations
+Course 1 Week 2 Exercise 2 - mnist data - reach 99% accuracy
+
+
+
 *** Imports
 
 import tensorflow as tf
@@ -15,6 +22,8 @@ print (tf.__version__)
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (training_images, training_labels), (test_images, test_labels) = fashion_mnist.load_data()
 
+mnist = tf.keras.datasets.mnist                                                               # Course 1 Week 2 Exercise 2
+
 *** Show image using matplotlib
 plt.imshow (training_images[2])
 
@@ -28,11 +37,37 @@ model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),                  
                                     tf.keras.layers.Dense(128, activation=tf.nn.relu),        # was tested with 1024 neurons instead of 128
                                     tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
                                     
+model = tf.keras.models.Sequential([                                                          # Course 1 Week 2 Exercise 2 - mnist handwriting
+  tf.keras.layers.Flatten(input_shape=(28, 28)),
+  tf.keras.layers.Dense(512, activation=tf.nn.relu),
+  tf.keras.layers.Dense(10, activation=tf.nn.softmax)
+])   
+
+*** Conv layer tf documentation
+tf.keras.layers.Conv2D(
+    filters, kernel_size, strides=(1, 1), padding='valid',
+    data_format=None, dilation_rate=(1, 1), groups=1, activation=None,
+    use_bias=True, kernel_initializer='glorot_uniform',
+    bias_initializer='zeros', kernel_regularizer=None,
+    bias_regularizer=None, activity_regularizer=None, kernel_constraint=None,
+    bias_constraint=None, **kwargs
+)
+
+*** Max pool layer tf documentation
+tf.keras.layers.MaxPool2D(
+    pool_size=(2, 2), strides=None, padding='valid', data_format=None,
+    **kwargs
+)
+                                    
 *** Compiling a model
 model.compile(optimizer = 'sgd', loss = 'mean_squared_error')                                  # Course 1 Week 1
 model.compile(optimizer = tf.optimizers.Adam(),                                                # Course 1 Week 2
               loss = 'sparse_categorical_crossentropy',
               metrics=['accuracy'])
+              
+model.compile(optimizer='adam',                                                                # Course 1 Week 2 Exercise 2
+               loss='sparse_categorical_crossentropy',
+               metrics=['accuracy'])              
               
 *** params in compile function -> optimizer, loss, metrics, loss_weights, weighted metrics, run_eagerly, steps_per_execution
                                                                                                # uses the first two or 3 at most

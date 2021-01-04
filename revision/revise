@@ -2,7 +2,7 @@
 Course 1 Week 1 - House price with number of bedrooms
 Course 1 Week 2 Lab 1- fashion_mnist - with various variations
 Course 1 Week 2 Exercise 2 - mnist data - reach 99% accuracy
-
+Course 1 Week 3 - fashion_mnist with Conv2D and MaxPool layers, 2 each
 
 
 *** Imports
@@ -109,4 +109,9 @@ callbacks = myCallback()
 By removing flatten layer, the shape will not be correct and there will be an error
 If you have less neurons in the last layer than the number of classes, there will be an error
 Adding metrics in compile, prints out accuracy as well
+
+*** Course 1 Week 3 variations fashion_mnist dataset
+Dense 128 no conv and maxpool                      - 5 epochs accuracy .78 to .89, validation accuracy .87
+2 conv and 2 maxpool                               - 5                 .78 to .93                      .90
+20 epochs                                                                          validation accuracy will go down due to overfitting
               

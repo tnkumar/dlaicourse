@@ -3,6 +3,7 @@ Course 1 Week 1 - House price with number of bedrooms
 Course 1 Week 2 Lab 1- fashion_mnist - with various variations
 Course 1 Week 2 Exercise 2 - mnist data - reach 99% accuracy
 Course 1 Week 3 - fashion_mnist with Conv2D and MaxPool layers, 2 each
+Course 1 Week 4 - horse or human - using Image Generator
 
 
 *** Imports
@@ -23,6 +24,24 @@ fashion_mnist = tf.keras.datasets.fashion_mnist
 (training_images, training_labels), (test_images, test_labels) = fashion_mnist.load_data()
 
 mnist = tf.keras.datasets.mnist                                                               # Course 1 Week 2 Exercise 2
+
+*** Getting images and unzipping into directories                                             # Course 1 Week 4
+
+!wget --no-check-certificate \
+    https://storage.googleapis.com/laurencemoroney-blog.appspot.com/horse-or-human.zip \
+    -O /tmp/horse-or-human.zip
+
+-----> Unzipping to directories 
+import os
+import zipfile
+
+local_zip = '/tmp/horse-or-human.zip'
+zip_ref = zipfile.ZipFile(local_zip, 'r')
+zip_ref.extractall('/tmp/horse-or-human')
+zip_ref.close()
+<------
+
+======> Need to understand the code for printing images that show different horse and human images
 
 *** Show image using matplotlib
 plt.imshow (training_images[2])
